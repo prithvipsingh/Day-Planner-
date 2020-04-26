@@ -11,22 +11,22 @@ getHeaderDate();
 $(document).ready(function () {
   // create hours variable in arrray 
 
-  var myHours = ["9AM","10AM","11AM","12PM","1PM","2PM","3PM","4PM","5PM"];
+  var myHoursId = ["9","10","11","12","1","2","3","4","5"];
    
   
 
-   myHours.forEach(function(myHours) {
-
+   myHoursId.forEach(function(myHours) {
+     var description= $(".description");
     if (myHours < moment().format("HH")) {
-      planData.attr ({
+      description.attr ({
           "class": "past", 
       })
   } else if (myHours === moment().format("HH")) {
-      planData.attr({
+      description.attr({
           "class": "present"
       })
   } else if (myHours > moment().format("HH")) {
-      planData.attr({
+      description.attr({
           "class": "future"
       })
   }
