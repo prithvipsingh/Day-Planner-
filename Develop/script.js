@@ -17,15 +17,15 @@ $(document).ready(function () {
 
    myHoursId.forEach(function(myHours) {
      var description= $(".description");
-    if (myHours < moment().format("HH")) {
+    if (myHoursId < moment().format("HH")) {
       description.attr ({
           "class": "past", 
       })
-  } else if (myHours === moment().format("HH")) {
+  } else if (myHoursId === moment().format("HH")) {
       description.attr({
           "class": "present"
       })
-  } else if (myHours > moment().format("HH")) {
+  } else if (myHoursId > moment().format("HH")) {
       description.attr({
           "class": "future"
       })
