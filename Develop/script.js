@@ -11,35 +11,22 @@ getHeaderDate();
 $(document).ready(function () {
   // create hours variable in arrray 
 
-  var myHoursId = ["9","10","11","12","1","2","3","4","5"];
-   
-  
+  var myHoursId = ["9","10","11","12","13","14","15","16","17"];
+   // create for each function 
+   myHoursId.forEach(function(myHour) {
+    var description= $(".description");
+    var currentHour = moment().format("HH");
+    myHour = parseInt(myHour);
+    if (myHour < currentHour) {
+      description.addClass("past");
+    } else if (myHour === currentHour) {
+      description.addClass("present");
+    } else if (myHour > currentHour) {
+      description.addClass("future");
+    }
 
-   myHoursId.forEach(function(myHours) {
-     var description= $(".description");
-    if (myHoursId < moment().format("HH")) {
-      description.attr ({
-          "class": "past", 
-      })
-  } else if (myHoursId === moment().format("HH")) {
-      description.attr({
-          "class": "present"
-      })
-  } else if (myHoursId > moment().format("HH")) {
-      description.attr({
-          "class": "future"
-      })
-  }
-
-  // creates save button
-  var saveButton = $("<i class='far fa-save fa-lg'></i>")
-  var savePlan = $("<button>")
-      .attr({
-          "class": "col-md-1 saveBtn"
-  });
-
+    // creates save button
+    var saveButton = $("<i class='far fa-save fa-lg'></i>")
+    var savePlan = $("<button>").attr("class","col-md-1 saveBtn");
+    });
 })
-
-   });
-
-});
