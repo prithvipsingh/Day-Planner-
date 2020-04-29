@@ -22,17 +22,17 @@ function fetchReminders() {
 }
 
 function displayReminders() {
-  var myHoursId = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
-  myHoursId.forEach((id) => {
+  var hoursArray = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
+  hoursArray.forEach((id) => {
     $(`#${id}`).val(allText[id]);
   });
 }
 
 // sets any existing localStorage data to the view if it exists
 function init() {
-  var storedDay = JSON.parse(localStorage.getItem("myHoursId"));
+  var storedDay = JSON.parse(localStorage.getItem("hoursArray"));
   if (storedDay) {
-    myHoursId = storedDay;
+    hoursArray = storedDay;
   }
   fetchReminders();
   displayReminders();
@@ -43,18 +43,18 @@ getHeaderDate();
 $(document).ready(function () {
   // create hours variable in arrray
   init();
-
-  var myHoursId = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
+  var currentHour = moment().format("HH");
+  var hoursArray = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
   // create for each function
-  myHoursId.forEach(function (myHour) {
-    var description = $(".description");
-    var currentHour = moment().format("HH");
-    myHour = parseInt(myHour);
-    if (myHour < currentHour) {
+  hoursArray.forEach(function(hour) {
+    var description = $("#"+hour);
+
+    intHour = parseInt(hour);
+    if (intHour < currentHour) {
       description.addClass("past");
-    } else if (myHour === currentHour) {
+    } else if (intHour == currentHour) {
       description.addClass("present");
-    } else if (myHour > currentHour) {
+    } else if (intHour > currentHour) {
       description.addClass("future");
     }
     // creates save button
